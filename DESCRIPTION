@@ -20,6 +20,7 @@ Imports:
     ggplot2,
     ggtree,
     ggtreeExtra,
+    lobstr,
     gridExtra,
     igraph,
     Matrix,
