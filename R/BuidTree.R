@@ -557,13 +557,15 @@ setMethod(f="Add_DepthMatrix",
 #' @return redeemR with @AssignedVarian list of two p is a probability matrix of variants vs edges (Rowsum is 1) and Variant.assign.report, a dataframe (Variant|Edge.Assign|prob) 
 #' @import foreach doParallel doMC
 #' @importFrom pryr mem_used
+#' @importFrom lobstr mem_used
 setMethod(f="Add_AssignVariant",
           signature="redeemR",
           definition=function(redeemR=DN1_HSC_redeemR.VerySensitive,n.cores=4){
 require(foreach)
 # require(doParallel)
 require(doMC)
-require(pryr)
+#require(pryr)
+require(lobstr)
 tree<-redeemR@TREE@phylo
 mtr<-redeemR@Cts.Mtx %>%  as.matrix() %>% t  # Each row is a variant, each column is a cell
 mtr.bi<-redeemR@Cts.Mtx.bi %>%  as.matrix() %>% t  # Each row is a variant, each column is a cell
@@ -586,7 +588,7 @@ NonZero.logV<-log(1-Zero.p) # A matrix of log(probability of 1 or >=1 given w/ m
 Zero.logP<-log(0.95) # A matrix of log(probability of zero given no mutation in the cell)  Variant vs cell
 NonZero.logP<-log(1-0.95) # A matrix of log(probability of 1 or >=1 given no mutation in the cell)  Variant vs cell
 print("(use doMC)Will gc in each loop; Befrore going into the loop, the memory use is:")
-print(pryr::mem_used())
+print(lobstr::mem_used())
 ## Compute the loglik
 # my.cluster <- parallel::makeCluster(n.cores,type="FORK")
 # print(my.cluster)
@@ -1954,3 +1956,4 @@ Clonal_Variants<-c(Clonal_Variants,list(stat))
 names(Clonal_Variants)<-unique(meta$Clone_merge)
 return(Clonal_Variants)
 }  
+
