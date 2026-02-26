@@ -556,7 +556,6 @@ setMethod(f="Add_DepthMatrix",
 #' @export
 #' @return redeemR with @AssignedVarian list of two p is a probability matrix of variants vs edges (Rowsum is 1) and Variant.assign.report, a dataframe (Variant|Edge.Assign|prob) 
 #' @import foreach doParallel doMC
-#' @importFrom pryr mem_used
 #' @importFrom lobstr mem_used
 setMethod(f="Add_AssignVariant",
           signature="redeemR",
@@ -1956,4 +1955,5 @@ Clonal_Variants<-c(Clonal_Variants,list(stat))
 names(Clonal_Variants)<-unique(meta$Clone_merge)
 return(Clonal_Variants)
 }  
+
 
