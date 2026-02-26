@@ -25,7 +25,6 @@ Imports:
     Matrix,
     phangorn,
     phytools,
-    pryr,
     qvalue,
     RColorBrewer,
     reshape2,
